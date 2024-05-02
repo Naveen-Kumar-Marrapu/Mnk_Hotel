@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URL).then(()=> app.listen(5000, ()=> console.
 app.use(bodyParser.json());
 app.use('/vendor',vendorRoutes);
 app.use('/firm',firmRoutes);
-app.use('/firm');
+
 
 app.use("/",(req,res)=>{
     res.send("<h1> Hello Pandu, Cool Pandu</h1>");
