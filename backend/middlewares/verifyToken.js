@@ -2,7 +2,8 @@ import Vendor from '../models/Vendor.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
-const secreteKey = process.env.SECRETEKEY;
+const secreteKey = process.env.SECREATEKEY;
+console.log(secreteKey)
 const verifyToken = async(req,res,next)=>{
     const token = req.headers.token;
 
@@ -11,7 +12,7 @@ const verifyToken = async(req,res,next)=>{
     }
     try{
 
-        const decoded = jwt.verify(token,secretkey);
+        const decoded = jwt.verify(token,secreteKey);
         const vendor = await Vendor.findById(decoded.vendorId);
         if(!vendor){
             return res.status(404).json({error: "vendor not found"})

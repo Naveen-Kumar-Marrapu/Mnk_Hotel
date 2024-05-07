@@ -29,7 +29,10 @@ const addFirm = async(req,res)=>{
             firmName, area, category, region, offer, image, vendor: vendor._id
         });
     
-        await firm.save();
+        const savedFirm = await firm.save();
+        vendor.firm.push(savedFirm);
+        await vendor.save();
+
         return res.status(200).json({message: "Firm added successfully"});
         
     } catch (error) {
@@ -41,7 +44,31 @@ const addFirm = async(req,res)=>{
 };
 const addFirmMiddleware = [upload.single('image'), addFirm];
 
-export default addFirmMiddleware;
+const getAllFirms = async (req,res)=>{
+    try {
+        const firms = await Firm.find(); //to show firm details in vendor table 
+        res.json({firms});
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({error: "Internal server error"});
+    }
+}
+
+const getFirmById = async(req,res)=>{
+    const firmId = req.params.id;
+    try {
+        const firm = await Firm.findById(firmId);
+        if(!firm){
+           return res.status(404).json({error: "Firm is not found"});
+        }
+        res.status(200).json({firm});
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: "Internal server error"});
+    }
+}
+
+export { addFirmMiddleware, getAllFirms, getFirmById} ;
 
 
 

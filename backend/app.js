@@ -17,7 +17,3 @@ app.use('/vendor',vendorRoutes);
 app.use('/firm',firmRoutes);
 
 
-app.use("/",(req,res)=>{
-    res.send("<h1> Hello Pandu, Cool Pandu</h1>");
-})
-
