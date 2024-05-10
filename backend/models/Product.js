@@ -1,4 +1,4 @@
-import mongoose from 'mogoose';
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
     productName:{
@@ -30,8 +30,12 @@ const productSchema = new mongoose.Schema({
     },
     firm:[
         {
-          type: mongoose.Schema.Types.objesctId, 
-          ref:'firm' 
+          type: mongoose.Schema.Types.ObjectId,
+          ref:'Firm' 
         }
     ]
-})
+});
+
+const Product = mongoose.model('Product',productSchema);
+
+export default Product;

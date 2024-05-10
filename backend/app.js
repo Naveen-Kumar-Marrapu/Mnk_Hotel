@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import vendorRoutes from './routes/vendorRoutes.js';
 import bodyParser from 'body-parser';
 import firmRoutes from './routes/firmRoutes.js';
+import productRoutes from './routes/productRoutes.js';
 
 dotenv.config();
 const app = express();
@@ -15,5 +16,6 @@ mongoose.connect(process.env.MONGO_URL).then(()=> app.listen(5000, ()=> console.
 app.use(bodyParser.json());
 app.use('/vendor',vendorRoutes);
 app.use('/firm',firmRoutes);
+app.use('/product', productRoutes);
 
 

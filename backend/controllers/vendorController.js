@@ -40,7 +40,8 @@ const vendorLogin = async(req,res)=>{
             return res.status(401).json({error: "invalid password"})
         } 
         const token = jwt.sign({vendorId: vendor._id},secreateKey,{expiresIn: "1h"});
-        res.status(201).json({success: "Login successful", token});console.log(email, "this is token", token);
+        res.status(201).json({success: "Login successful", token});
+        console.log(email, "this is token", token);
 
 
     }catch(error){

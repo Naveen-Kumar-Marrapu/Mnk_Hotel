@@ -30,7 +30,7 @@ const addFirm = async(req,res)=>{
         });
     
         const savedFirm = await firm.save();
-        vendor.firm.push(savedFirm);
+        vendor.firm.push(savedFirm); // now we adding firm into vendor, that's why we push the firm into vendor
         await vendor.save();
 
         return res.status(200).json({message: "Firm added successfully"});
