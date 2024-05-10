@@ -6,6 +6,6 @@ const router = express.Router();
 const [uploadMiddleware, addProduct] = addProductMiddleware;
 
 router.post('/add-product/:firmId',addProduct);
-router.get('/:firmid/products',getProductByFirm);
+router.get('/:firmId/products',getProductByFirm);
 
 export default router;
