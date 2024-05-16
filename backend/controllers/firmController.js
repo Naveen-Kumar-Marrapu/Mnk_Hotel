@@ -68,7 +68,20 @@ const getFirmById = async(req,res)=>{
     }
 }
 
-export { addFirmMiddleware, getAllFirms, getFirmById} ;
+const deleteFirmById = async(req,res)=>{
+    try {
+      const firmId = req.params.firmId;
+      const deletedFirm =  await Firm.findByIdAndDelete(firmId);
+      if(!deletedFirm){
+         return res.status(400).json({error: "No product found"});
+      }
+
+    } catch (error) {
+      onsole.error(error);
+      res.status(500).json({error: "Internal server error"});
+    }
+  }
+export { addFirmMiddleware, getAllFirms, getFirmById,deleteFirmById} ;
 
 
 
